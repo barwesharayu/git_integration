@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset=" ">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Github-Integration</title>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+<body>
+    {% block content %}
+    {% csrf_token %}
+        <h1>Github Intergation</h1>
+        <h4>repository used: <a href="https://github.com/pallets/jinja.git">github.com/pallets/jinja.git</a></h4>
+        <form action="">
+            <label for="filter">Select Filter</label>
+            <select name="filters" id="filters">
+            <option value="All" name = "All" selected>All</option>
+            <option value="User" name="User">User ID</option>
+            <option value="label">Label ID</option>
+            <option value="Days">Days</option>
+            <option value="State">State</option>
+            </select><br><br>
+            <label for="Value">Enter Value</label>
+            <input type="text" id="Value" name="e_Value" value = ''>
+            <input type="submit" value="Submit" name="submit"><br><br>
+        </form>
+        <table style="width:60%">
+          <tr>
+            <th>User ID</th>
+            <th>Status</th>
+            <th>Label ID</th>
+            <th>Created Date</th>
+          </tr>
+            {% for i in R1 %}
+              <tr>
+                  <td>{{i.user}}</td>
+                  <td>{{i.state}}</td>
+                  <td>{{i.labels}}</td>
+                  <td>{{i.create_date}}</td>
+              </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
+</body>
+</html>
+
